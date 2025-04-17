@@ -1,0 +1,29 @@
+name: Deploy noVNC Web App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python for Websockify
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
+          pip install websockify
+
+      - name: Start Websockify
+        run: |
+          ./utils/novnc_proxy --vnc localhost:5901 --listen 6080
