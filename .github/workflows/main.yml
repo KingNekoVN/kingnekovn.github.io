@@ -24,6 +24,13 @@ jobs:
           sudo apt install -y python3-pip
           pip install websockify
 
+      - name: Clone noVNC
+        run: |
+          git clone https://github.com/novnc/noVNC.git
+          cd noVNC
+          git checkout v1.2.0
+
       - name: Start Websockify
         run: |
+          cd noVNC
           ./utils/novnc_proxy --vnc localhost:5901 --listen 6080
