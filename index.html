@@ -23,7 +23,7 @@
 <body>
   <div id="vnc-container"></div>
 
-  <script src="noVNC/core/rfb.js"></script>
+  <script src="https://unpkg.com/novnc@1.2.0/core/rfb.js"></script>
   <script>
     const rfb = new RFB(document.getElementById('vnc-container'), 'ws://localhost:6080');
     rfb.connect('localhost', 5901, 'mật khẩu của bạn');
